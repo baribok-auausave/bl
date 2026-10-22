@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f0e8">
+  <meta name="description" content="Небольшая страница о паре poohpavel — о тепле, близости и моментах, которые хочется сохранить.">
+  <title>poohpavel — история про двоих</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f0e8;
+      --ink: #28231f;
+      --muted: #766c63;
+      --rose: #df8c79;
+      --plum: #543e49;
+      --line: rgba(40, 35, 31, .14);
+      --serif: Georgia, "Times New Roman", serif;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      scroll-behavior: smooth;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .wordmark {
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-decoration: none;
+    }
+
+    .topbar nav { display: flex; gap: 30px; }
+    .topbar nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .topbar nav a:hover { color: var(--ink); }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 620px;
+      overflow: hidden;
+      align-items: center;
+      grid-template-columns: 1.1fr .9fr;
+      border-radius: 10px;
+      background: var(--plum);
+      color: #fff9f2;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      padding: 72px 0 72px 76px;
+    }
+
+    .eyebrow {
+      margin: 0 0 24px;
+      color: #eab1a2;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, blockquote { font-family: var(--serif); font-weight: 400; }
+    h1 {
+      max-width: 600px;
+      margin: 0;
+      font-size: clamp(4rem, 9vw, 8.4rem);
+      letter-spacing: -.075em;
+      line-height: .86;
+    }
+
+    .hero-intro {
+      max-width: 400px;
+      margin: 32px 0 0;
+      color: #e6d9d4;
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 36px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 249, 242, .55);
+      color: #fff9f2;
+      font-size: .84rem;
+      letter-spacing: .08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .hero-art {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 48%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-art::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--plum), transparent 48%), linear-gradient(0deg, rgba(40, 35, 31, .2), transparent 45%);
+      content: "";
+    }
+
+    .hero-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .orbit-label {
+      position: absolute;
+      z-index: 1;
+      right: 9%;
+      bottom: 10%;
+      padding: 11px 16px;
+      border: 1px solid rgba(255, 249, 242, .3);
+      border-radius: 99px;
+      background: rgba(84, 62, 73, .6);
+      color: #fff9f2;
+      font-size: .73rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transform: rotate(6deg);
+    }
+
+    .intro-section {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: 50px;
+      padding: 118px 8%;
+    }
+
+    .section-index {
+      margin: 8px 0 0;
+      color: var(--rose);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      letter-spacing: -.05em;
+      line-height: 1.05;
+    }
+
+    .intro-text {
+      max-width: 600px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    .moments {
+      padding: 78px 8% 90px;
+      border-top: 1px solid var(--line);
+    }
+
+    .moments-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 42px;
+    }
+    .moments-heading p {
+      max-width: 280px;
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.6;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 228px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .25);
+    }
+    .card-number {
+      color: var(--rose);
+      font-family: var(--serif);
+      font-size: 1.6rem;
+    }
+    .card h3 {
+      margin: 34px 0 10px;
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+
+    .photo-story {
+      padding: 30px 8% 90px;
+    }
+
+    .photo-heading {
+      margin-bottom: 30px;
+    }
+
+    .photo-heading h2 {
+      margin-top: 8px;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .photo-grid figure {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      margin: 0;
+      overflow: hidden;
+      background: #e9d8cb;
+    }
+
+    .photo-grid img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .photo-grid figure:hover img {
+      transform: scale(1.04);
+    }
+
+    .photo-grid figcaption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 32px 14px 13px;
+      background: linear-gradient(transparent, rgba(40, 35, 31, .65));
+      color: white;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+    }
+
+    .quote {
+      display: grid;
+      min-height: 330px;
+      margin: 0;
+      padding: 58px 24px;
+      place-items: center;
+      background: #e9d8cb;
+      text-align: center;
+    }
+    blockquote {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+    }
+    .quote figcaption {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    footer span:last-child { color: var(--rose); }
+
+    @media (max-width: 760px) {
+      .page-shell { width: min(100% - 28px, 560px); }
+      .topbar { padding: 20px 0; }
+      .topbar nav { gap: 14px; font-size: .65rem; }
+      .hero { min-height: 680px; align-items: start; grid-template-columns: 1fr; }
+      .hero-copy { padding: 54px 28px 280px; }
+      .hero-art { top: auto; bottom: 0; width: 100%; height: 310px; }
+      .hero-art::after { background: linear-gradient(0deg, rgba(40, 35, 31, .25), transparent 65%); }
+      .orbit-label { right: 8%; bottom: 12%; }
+      .intro-section { grid-template-columns: 1fr; gap: 25px; padding: 80px 8%; }
+      .moments { padding: 65px 8%; }
+      .moments-heading { align-items: start; flex-direction: column; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+      .card h3 { margin-top: 24px; }
+      .photo-story { padding: 10px 8% 65px; }
+      .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-shell topbar">
+    <a class="wordmark" href="#" aria-label="poohpavel — на главную">poohpavel</a>
+    <nav aria-label="Навигация по странице">
+      <a href="#about">О паре</a>
+      <a href="#moments">Моменты</a>
+      <a href="#photos">Фото</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-shell hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Две истории · одно тепло</p>
+        <h1 id="hero-title">pooh<br>pavel</h1>
+        <p class="hero-intro">Страница о близости, маленьких радостях и особенном мире, который появляется, когда вы вместе.</p>
+        <a class="hero-link" href="#about">Узнать эту историю <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art">
+        <img src="677003dbc19a4fe4ff68cbff4c7bf9a4.jpg" alt="Двое проводят время вместе в солнечном саду">
+        <span class="orbit-label">вместе — лучше</span>
+      </div>
+    </section>
+
+    <section class="page-shell intro-section" id="about" aria-labelledby="about-title">
+      <p class="section-index">01 / О паре</p>
+      <div>
+        <h2 id="about-title">Своя маленькая вселенная</h2>
+        <p class="intro-text">У каждой пары есть свой язык: взгляды, шутки, привычки и моменты, понятные только двоим. Эта страница — место для всего, что делает poohpavel особенными: нежности в повседневности и ощущения, что рядом именно тот человек.</p>
+      </div>
+    </section>
+
+    <section class="page-shell moments" id="moments" aria-labelledby="moments-title">
+      <div class="moments-heading">
+        <div>
+          <p class="section-index">02 / Их мир</p>
+          <h2 id="moments-title">То, что остаётся</h2>
+        </div>
+        <p>Самое ценное часто прячется в самых простых вещах.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="card-number">01</span>
+          <h3>Быть рядом</h3>
+          <p>Когда даже обычный день становится чуточку лучше просто потому, что вы вместе.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">02</span>
+          <h3>Смеяться вдвоём</h3>
+          <p>Свои шутки, смешные воспоминания и лёгкость, которую не нужно объяснять.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">03</span>
+          <h3>Выбирать друг друга</h3>
+          <p>В больших планах и мелочах — снова и снова создавать общую историю.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-shell photo-story" id="photos" aria-labelledby="photos-title">
+      <div class="photo-heading">
+        <p class="section-index">03 / В кадре</p>
+        <h2 id="photos-title">Моменты вместе</h2>
+      </div>
+      <div class="photo-grid">
+        <figure>
+          <img src="4682fcedf8f8bc6e021b6606d1cce494.jpg" alt="Двое в кожаных куртках" loading="lazy">
+          <figcaption>Быть рядом</figcaption>
+        </figure>
+        <figure>
+          <img src="9b0db7e089b919d6722ee41e057412e9.jpg" alt="Двое смотрят друг на друга" loading="lazy">
+          <figcaption>Поймать взгляд</figcaption>
+        </figure>
+        <figure>
+          <img src="fac1d5506d66065a50e2b7d50c6b0b9c.jpg" alt="Двое улыбаются в объятиях" loading="lazy">
+          <figcaption>Смеяться вдвоём</figcaption>
+        </figure>
+        <figure>
+          <img src="371759610-256-k321301.jpg" alt="Портрет двоих" loading="lazy">
+          <figcaption>И просто быть</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <figure class="quote">
+      <div>
+        <blockquote>«Дом — это не место.<br>Это человек, рядом с которым спокойно».</blockquote>
+        <figcaption>про poohpavel</figcaption>
+      </div>
+    </figure>
+  </main>
+
+  <footer class="page-shell">
+    <span>poohpavel · история про двоих</span>
+    <span aria-hidden="true">сделано с теплом ♡</span>
+  </footer>
+</body>
+</html>
